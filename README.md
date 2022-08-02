@@ -15,9 +15,6 @@ Here you can find the demo link:
 
 
 
-> The site is developed with some specific https://netlify.com apis.
-
-
 ##  Requirements ##
 - Node.js 
 - Yarn
