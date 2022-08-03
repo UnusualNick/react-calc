@@ -1,6 +1,6 @@
 import React from "react";
 import expressionChangeHandler from "../scripts/expressionChangeHandler";
-import {useRecoilState, useSetRecoilState} from "recoil";
+import {useRecoilState} from "recoil";
 import expressionState from "../utils/atoms/expressionAtom";
 import validityAtom from "../utils/atoms/validityAtom";
 
