@@ -9,7 +9,8 @@ module.exports = {
       colors: {
         'common-button' : '#1e1e1f',
         'special-button' : '#d76e28',
-        'hovered-button' : '#3d3d3d'
+        'hovered-button' : '#3d3d3d',
+        'highlighted-red' : '#b93a3a'
       }
     }
   },

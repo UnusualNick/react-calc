@@ -6,7 +6,7 @@
 
 @layer components {
     .calc-button {
-        @apply text-white text-4xl cursor-pointer w-[16vw] h-[16vh] text-[8vh] rounded-md drop-shadow-lg;
+        @apply text-white cursor-pointer w-[16vw] h-[16vh] text-[8vh] rounded-md drop-shadow-lg;
     }
 
     .common-calc-button {
@@ -19,5 +19,9 @@
 
     .hovered-calc-button {
         @apply hover:bg-hovered-button hover:rounded-lg hover:drop-shadow-2xl;
+    }
+
+    .highlighted-text {
+        @apply text-highlighted-red italic
     }
 }

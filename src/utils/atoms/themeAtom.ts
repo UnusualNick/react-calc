@@ -5,7 +5,8 @@ const themeState = atom({
     default: {
         "commonButtonColor": "common-calc-button",
         "specialButtonColor": "special-calc-button",
-        "hoveredColor": "hovered-calc-button"
+        "hoveredColor": "hovered-calc-button",
+        "highlightedText": "highlighted-text"
     }
 })
 

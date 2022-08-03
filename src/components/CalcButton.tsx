@@ -1,7 +1,8 @@
 import React from "react";
 import expressionChangeHandler from "../scripts/expressionChangeHandler";
-import {useRecoilState} from "recoil";
+import {useRecoilState, useSetRecoilState} from "recoil";
 import expressionState from "../utils/atoms/expressionAtom";
+import validityAtom from "../utils/atoms/validityAtom";
 
 function CalcButton (
     {buttonValue, color, hoveredColor}: {
@@ -10,13 +11,14 @@ function CalcButton (
         hoveredColor: string,
     }) {
     const [expression, setExpression] = useRecoilState(expressionState)
+    const [isValid, setIsValid] = useRecoilState(validityAtom)
     return (
         <button
             className={"calc-button " +
-                `${hoveredColor} ${color}`}
+                `${hoveredColor} ${color} `}
             onClick={
                 () => {
-                    expressionChangeHandler((expression + buttonValue), setExpression)
+                    expressionChangeHandler((expression + buttonValue), setExpression, isValid, setIsValid)
                 }
             }
         >

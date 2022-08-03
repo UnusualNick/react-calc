@@ -6,7 +6,7 @@ import themeState from "../utils/atoms/themeAtom";
 
 function CommonButtonsPanel () {
     const {symbols} = useRecoilValue(symbolsState)
-    const {commonButtonColor, hoveredColor} = useRecoilValue(themeState)
+    const theme = useRecoilValue(themeState)
     return(
         <div className={"buttons flex items-start justify-centre "}>
             <div className={"number-buttons p-[0px] m-[0px] grid grid-cols-5 gap-x-[3vw] gap-y-[1vh]"}>
@@ -15,8 +15,8 @@ function CommonButtonsPanel () {
                     <CalcButton
                         key={symbol}
                         buttonValue={symbol}
-                        color={commonButtonColor}
-                        hoveredColor={hoveredColor}
+                        color={theme.commonButtonColor}
+                        hoveredColor={theme.hoveredColor}
                     />
                 )}
             </div>

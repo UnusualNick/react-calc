@@ -2,8 +2,10 @@ import React from 'react';
 import expressionChangeHandler from "./scripts/expressionChangeHandler";
 import CommonButtonsPanel from "./components/CommonButtonsPanel";
 import SpecialButtonsPanel from "./components/SpecialButtonsPanel";
-import { useRecoilState } from 'recoil';
+import {useRecoilState, useRecoilValue} from 'recoil';
 import expressionState from "./utils/atoms/expressionAtom";
+import themeAtom from "./utils/atoms/themeAtom";
+import validityAtom from "./utils/atoms/validityAtom";
 
 
 
@@ -11,7 +13,8 @@ import expressionState from "./utils/atoms/expressionAtom";
 
 function App() {
     const [expression, setExpression] = useRecoilState(expressionState)
-
+    const [isValid, setIsValid] = useRecoilState(validityAtom)
+    const theme = useRecoilValue(themeAtom)
     return (
         <div className="App bg-gray-600 flex justify-center items-center min-h-screen min-w-screen overflow-y ">
             <div className={"min-w-screen px-[10vw] py-[10vh]"}>
@@ -22,13 +25,14 @@ function App() {
                             "max-w-[49.25vw] min-w-[49.25vw] " +
                             "max-h-[16vh] min-h-[16vh] " +
                             "rounded-lg " +
-                            "text-white text-[8vh] "}
+                            " text-[8vh] " +
+                            `${!isValid ? theme.highlightedText : "text-white"}`}
                         type={"text"}
                         value={expression}
                         readOnly={false}
                         onChange={
                             (event) => {
-                                expressionChangeHandler(event.target.value, (value: string) => {setExpression(value)});
+                                expressionChangeHandler(event.target.value, (value: string) => {setExpression(value)}, isValid, setIsValid);
                             }
                         }/>
                     <SpecialButtonsPanel/>
