@@ -7,6 +7,7 @@ const parser = new Parser()
 
 export function expressionChangeHandler (expression: string, setter: (value: string) => void, isValid: boolean, setIsValid: SetterOrUpdater<boolean> ):void {
 
+    let fullExpression = expression
     let symbol = expression[expression.length-1];
     expression = expression.slice(0,-1)
     let newExpression;
@@ -16,14 +17,16 @@ export function expressionChangeHandler (expression: string, setter: (value: str
         return parser.parse(expression.slice(0, expression.length-1).toString()).evaluate()
     }
 
+    // console.log("fullExpression : ", fullExpression)
+
     try {
-        console.log(expression)
-        temp = solution(expression)
+        // console.log("expression : ", expression)
+        temp = solution(fullExpression)
         setIsValid(true)
     }
     catch (error) {
-        console.log(error)
-        newExpression = expression.slice(0, -1);
+        // console.log("error : ", error)
+        newExpression = expression;
         setIsValid(false)
     }
 
@@ -32,14 +35,24 @@ export function expressionChangeHandler (expression: string, setter: (value: str
             newExpression = "0";
             break;
         case "⌫":
-            newExpression = expression.slice(0,-2)
+            newExpression = expression.slice(0,-1)
             break;
         case "=":
-            if(isValid) newExpression = temp;
+            if(isValid) {
+                if(temp + symbol !== "undefined") {
+                    newExpression = temp;
+                }
+                else {
+                    newExpression = "0"
+                }
+            }
+            else {
+
+            }
 
             break;
         default:
-            newExpression = expression;
+            newExpression = fullExpression;
     }
     setter(newExpression)
 
